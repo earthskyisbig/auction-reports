@@ -20,6 +20,10 @@
     .tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:10px;}
     .tag.compare{background:#f5f3ff;color:#7c3aed;}
     .tag.detail{background:#eff6ff;color:var(--accent);}
+    .tag.dash{background:#fef3ec;color:#c2410c;}
+    a.card.wide{grid-column:1/-1;background:linear-gradient(180deg,#fffaf6,#fef3ec);border-color:#f6d5bf;}
+    a.card.wide:hover{border-color:#ea580c;}
+    a.card.wide .go{color:#c2410c;}
     .card h2{font-size:17px;font-weight:700;margin-bottom:6px;}
     .card p{font-size:13px;color:var(--muted);}
     .card .go{margin-top:14px;font-size:13px;color:var(--accent);font-weight:600;}
@@ -32,6 +36,12 @@
   <h1>경매 분석 보고서</h1>
   <p class="sub">법원경매 물건 권리·시세·수익성 분석 · 생성일 2026-07-09</p>
   <div class="grid">
+    <a class="card wide" href="redev-zone-dashboard.html">
+      <span class="tag dash">🏗️ 대시보드</span>
+      <h2>서울 재개발구역 DB — 1,128건</h2>
+      <p>서울 25개 자치구 정비사업 구역 전체를 사업 단계별로 추적. 단계·자치구 분포, 비례율 Top15, 관심 경매물건, 구별 전체 구역 디렉토리(색상 단계 구분·검색)</p>
+      <div class="go">대시보드 열기 →</div>
+    </a>
     <a class="card" href="report-compare-3.html">
       <span class="tag compare">📊 비교분석</span>
       <h2>3물건 비교 분석</h2>
