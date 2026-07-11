@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🏠 경매 분석 보고서 — 양주푸르지오 2025타경72795</title>
+  <style>
+    :root {
+      --bg: #ffffff; --surface: #f8f9fa; --surface2: #f1f3f5; --border: #e9ecef;
+      --text: #212529; --text-secondary: #6c757d;
+      --accent: #3b82f6; --accent-light: #eff6ff;
+      --green: #16a34a; --green-light: #f0fdf4;
+      --red: #dc2626; --red-light: #fef2f2;
+      --yellow: #d97706; --yellow-light: #fffbeb;
+      --purple: #7c3aed; --purple-light: #f5f3ff;
+      --orange: #ea580c; --orange-light: #fff7ed;
+      --nav-bg: #1e293b; --nav-text: #f1f5f9;
+      --radius: 12px; --radius-sm: 8px;
+      --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.04);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; font-size: 15px; }
+    nav { background: var(--nav-bg); color: var(--nav-text); padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
+    .nav-logo { font-size: 16px; font-weight: 700; color: var(--nav-text); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .page-wrapper { max-width: 800px; margin: 0 auto; padding: 32px 20px 80px; }
+    .article-header { margin-bottom: 28px; }
+    .article-series { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-light); color: var(--accent); font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; letter-spacing: .3px; }
+    .article-title { font-size: 26px; font-weight: 800; line-height: 1.35; color: var(--text); margin-bottom: 8px; }
+    .article-subtitle { font-size: 15px; color: var(--text-secondary); margin-bottom: 16px; }
+    .article-meta { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-secondary); flex-wrap: wrap; }
+    .article-meta .dot { color: var(--border); }
+    .tag { display: inline-flex; align-items: center; background: var(--surface); border: 1px solid var(--border); color: var(--text-secondary); font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 20px; }
+    .tag-green { background: var(--green-light); border-color: #bbf7d0; color: var(--green); }
+    .tag-yellow { background: var(--yellow-light); border-color: #fde68a; color: var(--yellow); }
+    .tag-red { background: var(--red-light); border-color: #fecaca; color: var(--red); }
+    .result-banner { background: linear-gradient(135deg, #0f2027 0%, #1a2a3a 50%, #0f2027 100%); border-radius: var(--radius); padding: 24px 28px; margin-bottom: 28px; }
+    .result-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    @media(max-width:600px) { .result-grid { grid-template-columns: repeat(2, 1fr); } }
+    .result-item .ri-label { font-size: 11px; color: #64748b; margin-bottom: 4px; }
+    .result-item .ri-value { font-size: 20px; font-weight: 800; color: #f1f5f9; }
+    .result-item .ri-sub { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+    .result-item .ri-value.green { color: #4ade80; }
+    .result-item .ri-value.blue { color: #60a5fa; }
+    .result-item .ri-value.yellow { color: #fbbf24; }
+    .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
+    @media(max-width:560px) { .summary-grid { grid-template-columns: 1fr 1fr; } }
+    .summary-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; }
+    .summary-card .sc-label { font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: .6px; margin-bottom: 6px; }
+    .summary-card .sc-value { font-size: 18px; font-weight: 700; color: var(--text); }
+    .summary-card .sc-sub { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+    .summary-card.accent { background: var(--accent-light); border-color: #bfdbfe; } .summary-card.accent .sc-value { color: var(--accent); }
+    .summary-card.green { background: var(--green-light); border-color: #bbf7d0; } .summary-card.green .sc-value { color: var(--green); }
+    .summary-card.yellow { background: var(--yellow-light); border-color: #fde68a; } .summary-card.yellow .sc-value { color: var(--yellow); }
+    .summary-card.red { background: var(--red-light); border-color: #fecaca; } .summary-card.red .sc-value { color: var(--red); }
+    .section { margin-bottom: 40px; }
+    .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid var(--border); }
+    .section-icon { font-size: 20px; }
+    .section-title { font-size: 17px; font-weight: 700; }
+    .section-badge { font-size: 11px; font-weight: 600; padding: 2px 10px; border-radius: 20px; margin-left: auto; }
+    .badge-safe { background: var(--green-light); color: var(--green); }
+    .badge-warn { background: var(--yellow-light); color: var(--yellow); }
+    .badge-danger { background: var(--red-light); color: var(--red); }
+    .badge-info { background: var(--accent-light); color: var(--accent); }
+    .info-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .info-table th, .info-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+    .info-table th { background: var(--surface); color: var(--text-secondary); font-weight: 600; font-size: 12px; white-space: nowrap; width: 150px; }
+    .info-table tr:last-child th, .info-table tr:last-child td { border-bottom: none; }
+    .val-bold { font-weight: 700; } .val-accent { color: var(--accent); font-weight: 600; } .val-red { color: var(--red); font-weight: 600; } .val-green { color: var(--green); font-weight: 600; } .val-muted { color: var(--text-secondary); font-size: 13px; }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 13px; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+    .data-table thead th { background: var(--nav-bg); color: #cbd5e1; font-weight: 600; padding: 10px 12px; text-align: center; font-size: 12px; }
+    .data-table tbody td { padding: 10px 12px; text-align: center; border-bottom: 1px solid var(--border); }
+    .data-table tbody tr:last-child td { border-bottom: none; }
+    .data-table tbody tr:hover { background: var(--surface); }
+    .td-left { text-align: left !important; } .td-bold { font-weight: 700; } .td-accent { color: var(--accent); font-weight: 600; } .td-red { color: var(--red); font-weight: 600; } .td-green { color: var(--green); font-weight: 600; } .td-muted { color: var(--text-secondary); font-size: 12px; }
+    .td-highlight { background: rgba(59,130,246,.07) !important; font-weight: 700; }
+    .timeline { display: flex; flex-direction: column; gap: 0; position: relative; padding-left: 28px; }
+    .timeline::before { content: ''; position: absolute; left: 10px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
+    .tl-item { position: relative; padding: 0 0 20px 16px; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-dot { position: absolute; left: -18px; top: 5px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--border); background: var(--bg); }
+    .tl-dot.done { background: var(--green); border-color: var(--green); }
+    .tl-dot.fail { background: var(--yellow); border-color: var(--yellow); }
+    .tl-dot.next { background: var(--accent); border-color: var(--accent); }
+    .tl-date { font-size: 11px; color: var(--text-secondary); margin-bottom: 2px; }
+    .tl-content { font-size: 14px; font-weight: 600; color: var(--text); }
+    .tl-detail { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+    .pill { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 20px; }
+    .pill-red { background: var(--red-light); color: var(--red); }
+    .pill-green { background: var(--green-light); color: var(--green); }
+    .pill-blue { background: var(--accent-light); color: var(--accent); }
+    .pill-gray { background: var(--surface); color: var(--text-secondary); border: 1px solid var(--border); }
+    .callout { border-left: 4px solid; padding: 14px 18px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin-bottom: 14px; font-size: 14px; line-height: 1.6; }
+    .callout-blue { border-color: var(--accent); background: var(--accent-light); color: #1e40af; }
+    .callout-green { border-color: var(--green); background: var(--green-light); color: #166534; }
+    .callout-yellow { border-color: var(--yellow); background: var(--yellow-light); color: #92400e; }
+    .callout-red { border-color: var(--red); background: var(--red-light); color: #991b1b; }
+    .callout-purple { border-color: #7c3aed; background: var(--purple-light); color: #4c1d95; }
+    .callout strong { font-weight: 700; }
+    .checklist { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .checklist li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; }
+    .check-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .compare-table { width: 100%; border-collapse: collapse; font-size: 13px; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+    .compare-table th { background: var(--nav-bg); color: #cbd5e1; padding: 10px 14px; font-size: 12px; }
+    .compare-table th:first-child { text-align: left; }
+    .compare-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); text-align: center; }
+    .compare-table td:first-child { text-align: left; font-weight: 500; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr.total-row td { background: #eff6ff; font-weight: 700; }
+    .profit-box { background: linear-gradient(135deg, #0f2027 0%, #1a2a3a 100%); border-radius: var(--radius); padding: 24px 28px; margin: 16px 0; }
+    .profit-box .pb-label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 6px; }
+    .profit-box .pb-main { font-size: 32px; font-weight: 800; color: #60a5fa; margin-bottom: 4px; }
+    .profit-box .pb-sub { font-size: 13px; color: #94a3b8; }
+    .profit-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media(max-width:560px) { .profit-row { grid-template-columns: 1fr 1fr; } }
+    .council-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 12px; }
+    .council-card .cc-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .council-card .cc-name { font-size: 15px; font-weight: 700; }
+    .council-card .cc-result { margin-left: auto; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+    .cc-result.good { background: var(--green-light); color: var(--green); }
+    .cc-result.warn { background: var(--yellow-light); color: var(--yellow); }
+    .cc-result.bad { background: var(--red-light); color: var(--red); }
+    .council-card .cc-body { font-size: 14px; color: var(--text); }
+    .radar-wrap { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; justify-content: center; }
+    .radar-legend { display: flex; flex-direction: column; gap: 8px; font-size: 13px; min-width: 200px; }
+    .radar-legend .rl-item { display: flex; align-items: center; gap: 8px; }
+    .radar-legend .rl-bar { height: 8px; border-radius: 4px; background: var(--accent); }
+    .grade-badge { display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 50%; font-size: 26px; font-weight: 800; color: #fff; background: linear-gradient(135deg,#3b82f6,#2563eb); }
+    hr { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+    .site-footer { background: var(--nav-bg); color: #64748b; text-align: center; font-size: 12px; padding: 20px; }
+    .text-muted { color: var(--text-secondary); font-size: 13px; }
+    @media(max-width:560px) { .article-title { font-size: 21px; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="#">🏛️ 경매 Council</a>
+  <span style="font-size:12px;color:#94a3b8">2025타경72795 · 의정부지방법원</span>
+</nav>
+<div class="page-wrapper">
+
+  <!-- HEADER -->
+  <div class="article-header">
+    <span class="article-series">📋 경매 물건 종합 분석 · A안(명세서 기준)</span>
+    <h1 class="article-title">양주푸르지오아파트 84.9㎡ (덕계동 852, 902호)</h1>
+    <p class="article-subtitle">1호선 덕계역 도보권 · 유찰 1회 · 실거주형 중소형 구축</p>
+    <div class="article-meta">
+      <span class="tag tag-green">인수 0원</span>
+      <span class="dot">·</span>
+      <span class="tag">입지 A등급</span>
+      <span class="dot">·</span>
+      <span class="tag tag-yellow">조건부 GO</span>
+      <span class="dot">·</span>
+      <span>분석일 2026.07.11</span>
+    </div>
+  </div>
+
+  <!-- 2) 핵심 지표 배너 -->
+  <div class="result-banner">
+    <div class="result-grid">
+      <div class="result-item"><div class="ri-label">감정가</div><div class="ri-value">2.73억</div><div class="ri-sub">273,000,000원</div></div>
+      <div class="result-item"><div class="ri-label">최저가 (70%)</div><div class="ri-value yellow">1.91억</div><div class="ri-sub">191,100,000원 · 유찰 1회</div></div>
+      <div class="result-item"><div class="ri-label">추정 시세 (중립)</div><div class="ri-value blue">2.53억</div><div class="ri-sub">동일 9층 실거래 근거</div></div>
+      <div class="result-item"><div class="ri-label">인수 위험</div><div class="ri-value green">0원</div><div class="ri-sub">대항력 임차인 없음</div></div>
+    </div>
+  </div>
+
+  <!-- 1) 고객 요구조건 -->
+  <div class="section">
+    <div class="section-header"><span class="section-icon">🧭</span><span class="section-title">고객 요구조건</span><span class="section-badge badge-info">검색 조건</span></div>
+    <table class="info-table">
+      <tr><th>투자 지역</th><td>경기도 양주시 (관할 의정부지방법원)</td></tr>
+      <tr><th>물건 유형</th><td>아파트 · 전용 59~85㎡</td></tr>
+      <tr><th>가격 조건</th><td>최저매각가 1억~3억 · 유찰 1~3회</td></tr>
+      <tr><th>단지 조건</th><td>500세대 이상 · 2016년 이후 준공 <span class="pill pill-yellow" style="background:var(--yellow-light);color:var(--yellow)">완화 적용</span></td></tr>
+      <tr><th>취득 구조·목적</th><td class="val-muted">미지정 → <b>개인 · 비규제 1주택 · 실거주/장기보유</b> 가정으로 계산 (다주택·매매사업자는 세금 별도)</td></tr>
+    </table>
+    <div class="callout callout-yellow" style="margin-top:14px">
+      <strong>단지 조건 완화 경위:</strong> 양주시 경매 매물(1~3억·59~85㎡) 7건은 전부 덕계·광사·고읍·삼숭 <b>구도심 2000년대 단지</b>로, 500세대↑·2016년↑ 조건 매칭 <b>0건</b>. 신축 대단지(옥정·회천)는 감정가가 최저가 3억 상한을 넘어 미포함. → 사용자 승인하에 세대수·연식 조건을 완화하고 유찰·가격·단지경쟁력 상위 물건을 분석.
+    </div>
+  </div>
+
+  <!-- 3) 물건 개요 + 타임라인 -->
+  <div class="section">
+    <div class="section-header"><span class="section-icon">🏠</span><span class="section-title">물건 개요</span></div>
+    <table class="info-table">
+      <tr><th>사건번호</th><td class="val-bold">의정부지방법원 2025타경72795</td></tr>
+      <tr><th>소재지</th><td>경기도 양주시 덕계동 852 양주푸르지오아파트 102동 9층 902호</td></tr>
+      <tr><th>단지 규모</th><td>498세대 · 8개동 · 지상 15층 · 2006.02 준공(대우건설)</td></tr>
+      <tr><th>전용면적</th><td>84.9097㎡ (공급 약 34평) · 철근콘크리트조</td></tr>
+      <tr><th>구조/이용</th><td>15층 중 9층(로열층) · 아파트 주거용 · 제2종일반주거지역</td></tr>
+      <tr><th>점유</th><td>채무자 본인 거주 (임차인 없음)</td></tr>
+    </table>
+    <div style="margin-top:20px">
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot done"></div><div class="tl-date">2025.07.23</div><div class="tl-content">경매개시결정</div></div>
+        <div class="tl-item"><div class="tl-dot done"></div><div class="tl-date">2025.10.15</div><div class="tl-content">배당요구종기</div></div>
+        <div class="tl-item"><div class="tl-dot fail"></div><div class="tl-date">2026.06.11</div><div class="tl-content">1회차 매각 — 유찰</div><div class="tl-detail">최저가 2.73억 → 유찰</div></div>
+        <div class="tl-item"><div class="tl-dot next"></div><div class="tl-date">2026.07.16 10:30</div><div class="tl-content">2회차 매각기일 (예정)</div><div class="tl-detail">최저가 1.911억 (70%)</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">2026.07.23 15:30</div><div class="tl-content">매각결정기일</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4) 권리분석 -->
+  <div class="section">
+    <div class="section-header"><span class="section-icon">⚖️</span><span class="section-title">권리분석 (A안 · 매각물건명세서 기준)</span><span class="section-badge badge-safe">인수 0원</span></div>
+    <table class="info-table">
+      <tr><th>말소기준권리</th><td class="val-bold">2017.02.16 근저당 <span class="val-muted">— 이후 설정 권리 전부 소멸</span></td></tr>
+      <tr><th>임차인</th><td class="val-green">없음 — 명세서·현황조사 모두 "조사된 임차내역 없음", 채무자 본인 거주</td></tr>
+      <tr><th>인수 보증금</th><td class="val-green val-bold">0원</td></tr>
+      <tr><th>청구금액</th><td>146,200,102원 <span class="val-muted">(신청채권자 몫 — 총 채무 아님)</span></td></tr>
+      <tr><th>인근 매각가율</th><td>덕계동 평균 64.9% (114건 · 감정가 대비)</td></tr>
+    </table>
+    <div class="callout callout-green" style="margin-top:14px"><strong>판정: 명세서 기준 안전.</strong> 대항력 있는 인수 임차인이 없어 추가 인수금 부담이 없습니다. 채무자 본인 거주라 명도는 임차인 협상 없이 진행(명도비 300만 반영).</div>
+    <div class="callout callout-yellow"><strong>A안 한계:</strong> 등기부등본 미확인 상태라 <b>총 채무·정밀 인수금은 미검증</b>입니다. 청구금액(1.46억)은 신청채권자 몫일 뿐 전체 채무가 아닙니다. 입찰 전 <b>등기사항전부증명서·전입세대열람</b> 필수.</div>
+  </div>
+
+  <!-- 5) 입지분석 -->
+  <div class="section">
+    <div class="section-header"><span class="section-icon">📍</span><span class="section-title">입지분석 (하이브리드 6축)</span><span class="section-badge badge-info">종합 A등급</span></div>
+    <div class="radar-wrap">
+      <svg width="320" height="300" viewBox="0 0 320 300" role="img" aria-label="입지 6축 레이더">
+        <!-- grid 100% -->
+        <polygon points="160,40 255.3,95 255.3,205 160,260 64.7,205 64.7,95" fill="none" stroke="#e9ecef" stroke-width="1"/>
+        <!-- grid 50% -->
+        <polygon points="160,95 207.6,122.5 207.6,177.5 160,205 112.4,177.5 112.4,122.5" fill="none" stroke="#e9ecef" stroke-width="1"/>
+        <!-- axes -->
+        <line x1="160" y1="150" x2="160" y2="40" stroke="#e9ecef"/>
+        <line x1="160" y1="150" x2="255.3" y2="95" stroke="#e9ecef"/>
+        <line x1="160" y1="150" x2="255.3" y2="205" stroke="#e9ecef"/>
+        <line x1="160" y1="150" x2="160" y2="260" stroke="#e9ecef"/>
+        <line x1="160" y1="150" x2="64.7" y2="205" stroke="#e9ecef"/>
+        <line x1="160" y1="150" x2="64.7" y2="95" stroke="#e9ecef"/>
+        <!-- data polygon: 교통78 직주32 학군100 공급45 인프라100 호재80 -->
+        <polygon points="160,64.2 190.5,132.4 255.3,205 160,199.5 64.7,205 83.8,106" fill="rgba(59,130,246,.22)" stroke="#3b82f6" stroke-width="2"/>
+        <circle cx="160" cy="64.2" r="3" fill="#3b82f6"/>
+        <circle cx="190.5" cy="132.4" r="3" fill="#3b82f6"/>
+        <circle cx="255.3" cy="205" r="3" fill="#3b82f6"/>
+        <circle cx="160" cy="199.5" r="3" fill="#3b82f6"/>
+        <circle cx="64.7" cy="205" r="3" fill="#3b82f6"/>
+        <circle cx="83.8" cy="106" r="3" fill="#3b82f6"/>
+        <!-- labels -->
+        <text x="160" y="30" text-anchor="middle" font-size="12" fill="#212529" font-weight="600">교통 78</text>
+        <text x="268" y="92" text-anchor="start" font-size="12" fill="#212529" font-weight="600">직주 32</text>
+        <text x="268" y="212" text-anchor="start" font-size="12" fill="#212529" font-weight="600">학군 100</text>
+        <text x="160" y="278" text-anchor="middle" font-size="12" fill="#212529" font-weight="600">공급 45</text>
+        <text x="52" y="212" text-anchor="end" font-size="12" fill="#212529" font-weight="600">인프라 100</text>
+        <text x="52" y="92" text-anchor="end" font-size="12" fill="#212529" font-weight="600">호재 80</text>
+      </svg>
+      <div class="radar-legend">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
+          <span class="grade-badge">A</span>
+          <div><div style="font-size:22px;font-weight:800">70.65점</div><div class="text-muted">6축 가중 종합 (A등급 하단)</div></div>
+        </div>
+        <div class="rl-item"><span class="rl-bar" style="width:78px"></span>교통 <b>78</b> <span class="text-muted">·25%</span></div>
+        <div class="rl-item"><span class="rl-bar" style="width:32px;background:#dc2626"></span>직주 <b>32</b> <span class="text-muted">·20%</span></div>
+        <div class="rl-item"><span class="rl-bar" style="width:100px;background:#16a34a"></span>학군 <b>100</b> <span class="text-muted">·20%</span></div>
+        <div class="rl-item"><span class="rl-bar" style="width:45px;background:#d97706"></span>공급 <b>45</b> <span class="text-muted">·15%</span></div>
+        <div class="rl-item"><span class="rl-bar" style="width:100px;background:#16a34a"></span>인프라 <b>100</b> <span class="text-muted">·10%</span></div>
+        <div class="rl-item"><span class="rl-bar" style="width:80px;background:#7c3aed"></span>호재 <b>80</b> <span class="text-muted">·10%</span></div>
+      </div>
+    </div>
+    <table class="data-table" style="margin-top:20px">
+      <thead><tr><th>축</th><th>점수</th><th>담당</th><th>근거</th></tr></thead>
+      <tbody>
+        <tr><td class="td-left td-bold">🚇 교통</td><td class="td-accent">78</td><td class="td-muted">코드</td><td class="td-left">1호선 덕계역 669m 도보권</td></tr>
+        <tr><td class="td-left td-bold">💼 직주근접</td><td class="td-red">32</td><td class="td-muted">코드</td><td class="td-left">최단 판교역 자동차 64분 — 서울 통근 약점</td></tr>
+        <tr><td class="td-left td-bold">🏫 학군</td><td class="td-green">100</td><td class="td-muted">코드</td><td class="td-left">초품아 125m · 학원 60개(1km) · 중학 297m</td></tr>
+        <tr><td class="td-left td-bold">📉 공급물량</td><td class="td-accent">45</td><td class="td-muted">에이전트</td><td class="td-left">옥정·회천신도시 입주장 지속(~2028) → 전세·매도 하방압</td></tr>
+        <tr><td class="td-left td-bold">🏪 인프라</td><td class="td-green">100</td><td class="td-muted">코드</td><td class="td-left">마트1·병원20·공원5·편의점20 (1km)</td></tr>
+        <tr><td class="td-left td-bold">🚀 호재</td><td style="color:#7c3aed;font-weight:600">80</td><td class="td-muted">에이전트</td><td class="td-left">GTX-C(덕정,착공)·7호선(옥정,공사중) 확정 — 인접역 간접수혜</td></tr>
+      </tbody>
+    </table>
+    <div class="callout callout-blue" style="margin-top:14px"><strong>입지 요약:</strong> 학군·인프라 만점으로 <b>실거주 매력은 높으나 직주근접이 약점</b>. GTX-C(덕정역)·7호선(옥정) 개통 시 서울 접근성 개선으로 약점 완화 여지. 다만 옥정·회천 대단지 입주장이 전세·환금성에 부담. <span class="text-muted">공급물량 40점 판정 시 69.9로 B등급이 되는 민감 구간.</span></div>
+  </div>
+
+  <!-- 6) 실거래 시세 -->
+  <div class="section">
+    <div class="section-header"><span class="section-icon">📊</span><span class="section-title">실거래 시세 (국토부 · 동일 단지·평형 84.9㎡)</span></div>
+    <table class="data-table">
+      <thead><tr><th>거래일</th><th>층</th><th>실거래가</th><th>비고</th></tr></thead>
+      <tbody>
+        <tr class="td-highlight"><td>2026.05.11</td><td>9층</td><td class="td-bold">2.525억</td><td class="td-muted">← 물건과 동일 층·평형</td></tr>
+        <tr><td>2026.04.13</td><td>8층</td><td>2.540억</td><td class="td-muted">중층</td></tr>
+        <tr><td>2026.06.16</td><td>8층</td><td>2.500억</td><td class="td-muted">중층</td></tr>
+        <tr><td>2026.05.26</td><td>14층</td><td>2.600억</td><td class="td-muted">고층</td></tr>
+        <tr><td>2026.06.11</td><td>1층</td><td>2.400억</td><td class="td-muted">저층(제외)</td></tr>
+        <tr><td>2026.06.08</td><td>15층</td><td>3.200억</td><td class="td-muted">이상치(제외)</td></tr>
+      </tbody>
+    </table>
+    <div class="profit-row" style="margin-top:16px">
+      <div class="summary-card"><div class="sc-label">보수</div><div class="sc-value">2.45억</div><div class="sc-sub">급매·하락 반영</div></div>
+      <div class="summary-card accent"><div class="sc-label">중립</div><div class="sc-value">2.53억</div><div class="sc-sub">동일 9층 실거래</div></div>
+      <div class="summary-card"><div class="sc-label">낙관</div><div class="sc-value">2.65억</div><div class="sc-sub">상위 거래</div></div>
+    </div>
+    <div class="callout callout-yellow" style="margin-top:14px"><strong>⚠️ 감정가 2.73억 &gt; 시세 중립 2.53억.</strong> 감정이 시세보다 높아 경매 할인 메리트는 <b>최저가 근처에서만</b> 발생합니다. 감정가 기준 낙찰가율 판단은 과대평가 주의.</div>
+  </div>
+
+  <!-- 7) 수익 분석 -->
+  <div class="section">
+    <div class="section-header"><span class="section-icon">💰</span><span class="section-title">수익 분석 (8대 비용 · 매도 중립 2.53억 기준)</span><span class="section-badge badge-warn">조건부</span></div>
+    <table class="compare-table">
+      <thead><tr><th>항목</th><th>최저가 1.91억</th><th>+5% 2.01억</th><th>+10% 2.10억</th></tr></thead>
+      <tbody>
+        <tr><td>낙찰가</td><td>191,100,000</td><td>200,700,000</td><td>210,200,000</td></tr>
+        <tr><td>① 취득세 (1.1%)</td><td>2,102,000</td><td>2,208,000</td><td>2,312,000</td></tr>
+        <tr><td>② 법무사비</td><td>960,000</td><td>1,000,000</td><td>1,050,000</td></tr>
+        <tr><td>③ 체납관리비(추정)</td><td>1,000,000</td><td>1,000,000</td><td>1,000,000</td></tr>
+        <tr><td>④ 명도비(채무자)</td><td>3,000,000</td><td>3,000,000</td><td>3,000,000</td></tr>
+        <tr><td>⑤ 수리비(20년차 추정)</td><td>10,000,000</td><td>10,000,000</td><td>10,000,000</td></tr>
+        <tr><td>⑥ 이자비용(무대출)</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>⑦ 중개보수(매도0.4%)</td><td>1,012,000</td><td>1,012,000</td><td>1,012,000</td></tr>
+        <tr class="total-row"><td>총취득원가</td><td>208,162,000</td><td>217,908,000</td><td>227,562,000</td></tr>
+        <tr><td class="td-bold">세전차익</td><td class="td-green td-bold">+43,830,000</td><td class="td-green td-bold">+34,080,000</td><td class="td-accent td-bold">+24,430,000</td></tr>
+        <tr><td class="td-bold">세전 ROI</td><td class="td-green">≈21.1%</td><td class="td-green">≈15.6%</td><td class="td-accent">≈10.7%</td></tr>
+      </tbody>
+    </table>
+    <div class="profit-box">
+      <div class="pb-label">권장 낙찰상한</div>
+      <div class="pb-main">약 2.05억</div>
+      <div class="pb-sub">이 이하로 낙찰받아야 세전차익 3,000만원+ 확보 · 최저가~+5% 구간(1.91~2.0억)이 매력 구간</div>
+    </div>
+    <div class="callout callout-red"><strong>세후·목적 주의:</strong> 개인이 <b>1년 미만 단기 매도 시 양도세 70%</b>로 세전차익 대부분 소멸 → <b>단기 flip 비권장</b>. 실거주·2년 이상 장기보유 시 세전≈세후. 다주택자는 취득세·양도세 중과 별도. 매매사업자는 종합소득세율 적용(세후 ROI ≈ 세전의 60~75%).</div>
+  </div>
+
+  <!-- 8) 종합 판단 -->
+  <div class="section">
+    <div class="section-header"><span class="section-icon">🧑‍⚖️</span><span class="section-title">종합 판단 (Council)</span><span class="section-badge badge-warn">조건부 GO</span></div>
+    <div class="council-card"><div class="cc-header"><span class="cc-name">⚖️ 권리</span><span class="cc-result good">안전</span></div><div class="cc-body">말소기준 2017 근저당, 인수 임차인·보증금 0원. 채무자 거주로 명도 단순. <span class="text-muted">단, 등기부 미확인 = 총 채무 재확인 필요.</span></div></div>
+    <div class="council-card"><div class="cc-header"><span class="cc-name">📍 입지</span><span class="cc-result good">A등급</span></div><div class="cc-body">역세권·학군·인프라 우수(실거주형). 직주근접 약점은 GTX-C·7호선으로 완화 여지.</div></div>
+    <div class="council-card"><div class="cc-header"><span class="cc-name">💰 수익</span><span class="cc-result warn">조건부</span></div><div class="cc-body">최저가~+5% 낙찰 시 세전 3,400~4,400만(ROI 15~21%). 감정가&gt;시세라 고가낙찰 금물. 단기매도는 세금·환금성 불리.</div></div>
+    <div class="council-card"><div class="cc-header"><span class="cc-name">⚠️ 리스크</span><span class="cc-result bad">주의</span></div><div class="cc-body">옥정·회천 입주장 지속 → 전세 눌림·역전세·환금성 저하 가능. 양주 평당가 2025년 약보합.</div></div>
+    <div class="callout callout-purple" style="margin-top:16px"><strong>최종 결론 — 조건부 GO.</strong> <b>실거주 또는 장기보유(2년↑) 목적</b>이면 최저가~+5%(1.91~2.0억)에서 매력적. <b>권장 낙찰상한 2.05억</b>. 단기 시세차익(flip)은 양도세·환금성 리스크로 <b>비권장</b>. 입찰 전 등기부·전입세대열람·관리비·현장 재확인 필수.</div>
+  </div>
+
+  <!-- 9) 체크리스트 -->
+  <div class="section">
+    <div class="section-header"><span class="section-icon">✅</span><span class="section-title">입찰 전 체크리스트</span></div>
+    <ul class="checklist">
+      <li><span class="check-icon">🔴</span><b>등기사항전부증명서</b> 발급 — 근저당·가압류 총 채무액, 말소되지 않는 권리(가처분·지상권 등) 최종 확인</li>
+      <li><span class="check-icon">🔴</span><b>전입세대열람</b> — 명세서 "임차인 없음"과 실제 전입세대 교차확인(불일치 사례 빈번)</li>
+      <li><span class="check-icon">🟠</span><b>체납 관리비</b> — 관리사무소에 공용부분 미납액 확인(추정 100만, 승계 대상)</li>
+      <li><span class="check-icon">🟠</span><b>현장 확인(임장)</b> — 9층 실물 상태·누수·수리 범위, 인근 옥정·회천 입주 캘린더·전세 매물 추이</li>
+      <li><span class="check-icon">🟡</span><b>세무 상담</b> — 본인 주택수·보유예정기간별 취득세/양도세 시뮬레이션</li>
+    </ul>
+  </div>
+
+  <hr/>
+
+  <!-- 10) 부록 -->
+  <div class="section">
+    <div class="section-header"><span class="section-icon">📎</span><span class="section-title">부록 — 리소스 · 분석 메트릭</span></div>
+    <table class="info-table">
+      <tr><th>사용 리소스</th><td>법원경매 검색 API · 국토부 실거래가 API · 카카오 로컬/내비 API · 웹조사(공급·호재)</td></tr>
+      <tr><th>파이프라인</th><td>① 크롤링 → ② 권리분석 → ③ 입지(6축) → ④ 수익성 → ⑤ 보고서</td></tr>
+      <tr><th>실거래 근거</th><td>동일 단지·동일 평형(84.9㎡) 최근 6개월 21건 (2025.12~2026.06)</td></tr>
+      <tr><th>분석 메트릭</th><td class="val-muted">소요 ≈ 15분 · 추정 토큰 입력 ≈ 165K·출력 ≈ 18K (에이전트 61K 포함) · 추정 비용 ≈ $0.76 (약 1,060원, 입력$3·출력$15/1M, 환율 1,400원)</td></tr>
+    </table>
+    <div class="callout callout-yellow" style="margin-top:14px"><strong>⚠️ 면책:</strong> 시세·수익률·낙찰가·입지등급은 모두 <b>추정</b>입니다. 특히 A안(등기부 미확인)의 인수금 판정과 공급물량 리스크는 반드시 <b>등기사항증명서·전입세대열람·현장확인·세무상담</b>으로 검증하세요. 최종 입찰 결정과 결과 책임은 투자자 본인에게 있습니다.</div>
+  </div>
+
+</div>
+<div class="site-footer">본 보고서는 투자 참고용이며, 최종 입찰 결정과 결과에 대한 책임은 투자자 본인에게 있습니다. · 경매 분석 키트 v1</div>
+</body>
+</html>

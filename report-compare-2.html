@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🏠 경매 물건 비교 보고서 — 양주 아파트 2건</title>
+  <style>
+    :root {
+      --bg:#ffffff;--surface:#f8f9fa;--surface2:#f1f3f5;--border:#e9ecef;
+      --text:#212529;--text-secondary:#6c757d;
+      --accent:#3b82f6;--accent-light:#eff6ff;
+      --green:#16a34a;--green-light:#f0fdf4;
+      --red:#dc2626;--red-light:#fef2f2;
+      --yellow:#d97706;--yellow-light:#fffbeb;
+      --purple:#7c3aed;--purple-light:#f5f3ff;
+      --nav-bg:#1e293b;--nav-text:#f1f5f9;
+      --radius:12px;--radius-sm:8px;
+      --shadow:0 1px 3px rgba(0,0,0,.08),0 4px 16px rgba(0,0,0,.04);
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;}
+    nav{background:var(--nav-bg);color:var(--nav-text);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+    .nav-logo{font-size:16px;font-weight:700;color:var(--nav-text);text-decoration:none;display:flex;align-items:center;gap:6px;}
+    .page-wrapper{max-width:860px;margin:0 auto;padding:32px 20px 80px;}
+    .article-header{margin-bottom:24px;}
+    .article-series{display:inline-flex;align-items:center;gap:6px;background:var(--accent-light);color:var(--accent);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px;}
+    .article-title{font-size:26px;font-weight:800;line-height:1.35;margin-bottom:8px;}
+    .article-subtitle{font-size:15px;color:var(--text-secondary);margin-bottom:16px;}
+    .article-meta{display:flex;gap:10px;font-size:13px;color:var(--text-secondary);flex-wrap:wrap;}
+    .tag{display:inline-flex;align-items:center;background:var(--surface);border:1px solid var(--border);color:var(--text-secondary);font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;}
+    .tag-green{background:var(--green-light);border-color:#bbf7d0;color:var(--green);}
+    .tag-yellow{background:var(--yellow-light);border-color:#fde68a;color:var(--yellow);}
+    /* winner banner */
+    .winner-banner{background:linear-gradient(135deg,#0f2027 0%,#1a2a3a 50%,#0f2027 100%);border-radius:var(--radius);padding:24px 28px;margin-bottom:28px;color:#f1f5f9;}
+    .winner-banner .wb-label{font-size:11px;color:#64748b;letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px;}
+    .winner-banner .wb-title{font-size:22px;font-weight:800;color:#4ade80;margin-bottom:6px;}
+    .winner-banner .wb-sub{font-size:13px;color:#94a3b8;}
+    .section{margin-bottom:40px;}
+    .section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--border);}
+    .section-icon{font-size:20px;}.section-title{font-size:17px;font-weight:700;}
+    .compare-table{width:100%;border-collapse:collapse;font-size:13.5px;border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;}
+    .compare-table th{background:var(--nav-bg);color:#cbd5e1;padding:11px 14px;font-size:12.5px;}
+    .compare-table th:first-child{text-align:left;width:150px;}
+    .compare-table td{padding:11px 14px;border-bottom:1px solid var(--border);text-align:center;}
+    .compare-table td:first-child{text-align:left;font-weight:600;color:var(--text-secondary);}
+    .compare-table tr:last-child td{border-bottom:none;}
+    .compare-table .win{background:rgba(22,163,74,.09);font-weight:700;color:var(--green);}
+    .compare-table .lose{color:var(--text);}
+    .col1-head{color:#93c5fd !important;}
+    .col2-head{color:#fcd34d !important;}
+    .pill{display:inline-block;font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;}
+    .pill-green{background:var(--green-light);color:var(--green);}
+    .pill-yellow{background:var(--yellow-light);color:var(--yellow);}
+    .pill-red{background:var(--red-light);color:var(--red);}
+    .pill-blue{background:var(--accent-light);color:var(--accent);}
+    .pill-gray{background:var(--surface);color:var(--text-secondary);border:1px solid var(--border);}
+    .cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    @media(max-width:640px){.cards{grid-template-columns:1fr;}}
+    .pcard{border:1px solid var(--border);border-radius:var(--radius);padding:20px;position:relative;overflow:hidden;}
+    .pcard.rank1{border-color:#bfdbfe;background:linear-gradient(180deg,#f5f9ff,#fff);}
+    .pcard.rank2{border-color:#fde68a;background:linear-gradient(180deg,#fffdf5,#fff);}
+    .pcard .rank-badge{position:absolute;top:0;right:0;font-size:11px;font-weight:700;padding:4px 12px;border-bottom-left-radius:10px;}
+    .rank1 .rank-badge{background:var(--accent);color:#fff;}
+    .rank2 .rank-badge{background:var(--yellow);color:#fff;}
+    .pcard .pc-name{font-size:16px;font-weight:800;margin-bottom:2px;padding-right:60px;}
+    .pcard .pc-loc{font-size:12px;color:var(--text-secondary);margin-bottom:14px;}
+    .pcard .pc-row{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px dashed var(--border);}
+    .pcard .pc-row:last-child{border-bottom:none;}
+    .pcard .pc-k{color:var(--text-secondary);}.pcard .pc-v{font-weight:600;}
+    .grade{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;font-weight:800;color:#fff;font-size:13px;}
+    .grade.A{background:#2563eb;}.grade.C{background:#d97706;}
+    .callout{border-left:4px solid;padding:14px 18px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;margin-bottom:14px;font-size:14px;line-height:1.6;}
+    .callout-blue{border-color:var(--accent);background:var(--accent-light);color:#1e40af;}
+    .callout-green{border-color:var(--green);background:var(--green-light);color:#166534;}
+    .callout-yellow{border-color:var(--yellow);background:var(--yellow-light);color:#92400e;}
+    .callout-red{border-color:var(--red);background:var(--red-light);color:#991b1b;}
+    .callout-purple{border-color:#7c3aed;background:var(--purple-light);color:#4c1d95;}
+    .callout strong{font-weight:700;}
+    .council-card{border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin-bottom:12px;}
+    .cc-header{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+    .cc-name{font-size:15px;font-weight:700;}
+    .cc-result{margin-left:auto;font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px;}
+    .cc-result.good{background:var(--green-light);color:var(--green);}
+    .cc-result.warn{background:var(--yellow-light);color:var(--yellow);}
+    hr{border:none;border-top:1px solid var(--border);margin:36px 0;}
+    .site-footer{background:var(--nav-bg);color:#64748b;text-align:center;font-size:12px;padding:20px;}
+    .text-muted{color:var(--text-secondary);font-size:13px;}
+    @media(max-width:560px){.article-title{font-size:21px;}}
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="#">🏛️ 경매 Council</a>
+  <span style="font-size:12px;color:#94a3b8">양주 아파트 비교 · 2건</span>
+</nav>
+<div class="page-wrapper">
+
+  <div class="article-header">
+    <span class="article-series">⚖️ 경매 물건 비교 분석</span>
+    <h1 class="article-title">양주 아파트 2건 비교 — 덕계 푸르지오 vs 광사 한양수자인</h1>
+    <p class="article-subtitle">둘 다 유찰 1회·전용 84.9㎡ · 승부는 <b>교통·수익률(1위)</b> vs <b>대단지·7호선 미래가치(2위)</b></p>
+    <div class="article-meta">
+      <span class="tag">동일 조건: 양주·84.9㎡·유찰1회</span>
+      <span class="tag tag-green">현재가치 1위 우위</span>
+      <span>분석일 2026.07.11</span>
+    </div>
+  </div>
+
+  <!-- 우선순위 배너 -->
+  <div class="winner-banner">
+    <div class="wb-label">종합 추천 (현재가치 기준)</div>
+    <div class="wb-title">🥇 1위 · 양주푸르지오 (덕계 902호)</div>
+    <div class="wb-sub">역세권(교통 78) + 학군 만점 + 최저가 낙찰 시 세전 ROI 21% + 권리 확인 완료 → 현재가치·안정성 우위. 2위는 7호선 고읍역(2027 목표) 실현에 베팅하는 미래가치형.</div>
+  </div>
+
+  <!-- 핵심 비교표 -->
+  <div class="section">
+    <div class="section-header"><span class="section-icon">📊</span><span class="section-title">핵심 비교표</span></div>
+    <table class="compare-table">
+      <thead><tr>
+        <th>항목</th>
+        <th class="col1-head">🥇 양주푸르지오 (덕계)</th>
+        <th class="col2-head">🥈 해동마을한양수자인 (광사)</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>사건번호</td><td>2025타경72795</td><td>2023타경79889</td></tr>
+        <tr><td>단지 규모</td><td class="lose">498세대 · 2006년</td><td class="win">764세대 · 2010년</td></tr>
+        <tr><td>전용/층</td><td>84.9㎡ · 9층(로열)</td><td>84.9㎡ · 6층(중층)</td></tr>
+        <tr><td>감정가</td><td>2.73억</td><td>3.456억</td></tr>
+        <tr><td>최저가 (70%)</td><td class="win">1.911억</td><td class="lose">2.419억</td></tr>
+        <tr><td>추정 시세 (중립)</td><td>2.53억</td><td>2.88억</td></tr>
+        <tr><td>감정 vs 시세</td><td class="lose">감정 +8% 고평가</td><td class="lose">감정 +20% 고평가</td></tr>
+        <tr><td>매각기일</td><td>2026.07.16</td><td>2026.07.28</td></tr>
+        <tr><td>권리 (인수)</td><td class="win">✅ 0원 (확인)</td><td><span class="pill pill-gray">미수집·수기확인</span></td></tr>
+        <tr><td>입지 등급</td><td class="win"><span class="grade A">A</span> 70.65</td><td class="lose"><span class="grade C">C</span> 47.65</td></tr>
+        <tr><td>└ 교통</td><td class="win">78 (덕계역 669m)</td><td class="lose">8 (비역세권)</td></tr>
+        <tr><td>└ 학군</td><td class="win">100</td><td class="lose">70 (중학 1.3km)</td></tr>
+        <tr><td>└ 호재</td><td>80 (GTX 간접)</td><td class="win">85 (고읍역 직접)</td></tr>
+        <tr><td>└ 인프라/직주/공급</td><td>100 / 32 / 45</td><td>100 / 32 / 45</td></tr>
+        <tr><td>최저가 낙찰 세전차익</td><td class="win">+4,383만</td><td class="lose">+2,717만</td></tr>
+        <tr><td>최저가 낙찰 세전 ROI</td><td class="win">≈21.1%</td><td class="lose">≈10.5%</td></tr>
+        <tr><td>권장 낙찰상한</td><td>약 2.05억</td><td>약 2.44억 (≈최저가)</td></tr>
+        <tr><td>최종 판단</td><td><span class="pill pill-yellow">조건부 GO</span></td><td><span class="pill pill-blue">미래가치 베팅</span></td></tr>
+      </tbody>
+    </table>
+    <p class="text-muted" style="margin-top:8px">초록 음영 = 해당 항목 우위. 직주·인프라·공급은 동일 생활권이라 동급.</p>
+  </div>
+
+  <!-- 물건 카드 -->
+  <div class="section">
+    <div class="section-header"><span class="section-icon">🏠</span><span class="section-title">물건별 요약</span></div>
+    <div class="cards">
+      <div class="pcard rank1">
+        <div class="rank-badge">1위 · 추천</div>
+        <div class="pc-name">양주푸르지오</div>
+        <div class="pc-loc">덕계동 852 · 102동 902호 · 2025타경72795</div>
+        <div class="pc-row"><span class="pc-k">최저가</span><span class="pc-v">1.911억</span></div>
+        <div class="pc-row"><span class="pc-k">시세(중립)</span><span class="pc-v">2.53억</span></div>
+        <div class="pc-row"><span class="pc-k">입지</span><span class="pc-v"><span class="grade A">A</span> 70.65</span></div>
+        <div class="pc-row"><span class="pc-k">세전 ROI(최저)</span><span class="pc-v" style="color:var(--green)">21.1%</span></div>
+        <div class="pc-row"><span class="pc-k">강점</span><span class="pc-v">역세권·학군·수익률</span></div>
+        <div class="pc-row"><span class="pc-k">약점</span><span class="pc-v">소규모·직주근접</span></div>
+      </div>
+      <div class="pcard rank2">
+        <div class="rank-badge">2위</div>
+        <div class="pc-name">해동마을한양수자인</div>
+        <div class="pc-loc">광사동 · 309동 602호 · 2023타경79889</div>
+        <div class="pc-row"><span class="pc-k">최저가</span><span class="pc-v">2.419억</span></div>
+        <div class="pc-row"><span class="pc-k">시세(중립)</span><span class="pc-v">2.88억</span></div>
+        <div class="pc-row"><span class="pc-k">입지</span><span class="pc-v"><span class="grade C">C</span> 47.65</span></div>
+        <div class="pc-row"><span class="pc-k">세전 ROI(최저)</span><span class="pc-v" style="color:var(--yellow)">10.5%</span></div>
+        <div class="pc-row"><span class="pc-k">강점</span><span class="pc-v">764세대·7호선 고읍역</span></div>
+        <div class="pc-row"><span class="pc-k">약점</span><span class="pc-v">비역세권·권리 미수집</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 수익 시나리오 비교 -->
+  <div class="section">
+    <div class="section-header"><span class="section-icon">💰</span><span class="section-title">수익 시나리오 비교 (매도 중립 기준)</span></div>
+    <table class="compare-table">
+      <thead><tr><th>낙찰 시나리오</th><th class="col1-head">1위 (매도 2.53억)</th><th class="col2-head">2위 (매도 2.88억)</th></tr></thead>
+      <tbody>
+        <tr><td>최저가 낙찰</td><td class="win">세전 +4,383만 (21.1%)</td><td>세전 +2,717만 (10.5%)</td></tr>
+        <tr><td>+5% 낙찰</td><td class="win">세전 +3,408만 (15.6%)</td><td>세전 +1,488만 (5.5%)</td></tr>
+        <tr><td>+10% 낙찰</td><td>세전 +2,443만 (10.7%)</td><td class="lose">세전 이익 미미</td></tr>
+      </tbody>
+    </table>
+    <div class="callout callout-yellow" style="margin-top:14px"><strong>공통 함정 — 감정가 고평가:</strong> 두 물건 모두 감정가가 시세보다 높습니다(1위 +8%, 2위 +20%). 감정가 대비 낙찰가율만 보면 싸 보이지만 <b>실제 시세 대비 할인폭은 최저가 근처에서만</b> 발생. 특히 2위는 감정 고평가가 심해 +5% 이상 낙찰 시 마진이 거의 사라집니다.</div>
+    <div class="callout callout-red"><strong>세후 주의(공통):</strong> 개인 1년 미만 단기매도 시 양도세 70% → 단타 부적합. 실거주·2년 이상 장기보유 전략이 유효.</div>
+  </div>
+
+  <!-- 종합 판단 -->
+  <div class="section">
+    <div class="section-header"><span class="section-icon">🧑‍⚖️</span><span class="section-title">종합 판단</span></div>
+    <div class="council-card"><div class="cc-header"><span class="cc-name">🥇 1위 양주푸르지오</span><span class="cc-result warn">조건부 GO</span></div>
+      <div class="cc-body">역세권(1호선 덕계역)·학군 만점으로 <b>현재 실거주 가치가 확고</b>. 최저가~+5% 낙찰 시 세전 ROI 15~21%. 권리 인수 0원 확인 완료. 실거주·장기보유 목적에 적합. <b>권장상한 2.05억.</b></div></div>
+    <div class="council-card"><div class="cc-header"><span class="cc-name">🥈 2위 해동마을한양수자인</span><span class="cc-result warn">미래가치 베팅</span></div>
+      <div class="cc-body">764세대 대단지·2010년으로 규모·연식은 우위지만 <b>현재 비역세권(교통 8점)이 입지를 C로 끌어내림</b>. 반전 카드는 <b>7호선 고읍역(직선 1.57km, 2027 개통 목표)</b> — 개통·안정화 시 준역세권 재평가 여지. 단 공정률 57.8%로 개통 지연 리스크. 권리분석 미수집이라 <b>입찰 전 수기 권리확인 필수</b>.</div></div>
+    <div class="callout callout-purple" style="margin-top:12px"><strong>최종 결론.</strong> <b>안정·현재가치·수익률 우선이면 1위(양주푸르지오)</b>가 명확한 우위 — 역세권·학군·확인된 권리·높은 ROI. <b>대단지 선호 + 7호선 고읍역 개통에 3~5년 베팅</b>할 수 있고 권리 수기확인이 가능하다면 2위도 미래가치 대안. 다만 두 물건 모두 감정 고평가라 <b>고가 낙찰은 금물</b>이며, 옥정·회천 입주장에 따른 환금성 리스크는 공통.</div>
+  </div>
+
+  <hr/>
+
+  <!-- 부록 -->
+  <div class="section">
+    <div class="section-header"><span class="section-icon">📎</span><span class="section-title">부록 — 데이터·면책</span></div>
+    <div class="callout callout-blue">
+      <strong>데이터 출처:</strong> 법원경매 검색 API(크롤링) · 국토부 실거래가 API(동일단지·평형 84.9㎡ 최근 6개월) · 카카오 로컬/내비 API(입지 정량 4축) · 웹조사(공급물량·호재, location-analyst 검증). 1위 권리분석은 매각물건명세서·현황조사서 기준(A안, 등기부 미확인). 2위 권리분석은 사이트 응답 오류로 미수집.
+    </div>
+    <div class="callout callout-yellow"><strong>⚠️ 면책:</strong> 시세·수익률·낙찰가·입지등급은 모두 <b>추정</b>입니다. 특히 2위 권리(인수금)·양 물건의 총 채무·7호선 개통시기·공급물량 리스크는 반드시 <b>등기사항증명서·전입세대열람·현장확인·세무상담</b>으로 검증하세요. 최종 입찰 결정과 결과 책임은 투자자 본인에게 있습니다.</div>
+  </div>
+
+</div>
+<div class="site-footer">본 보고서는 투자 참고용이며, 최종 입찰 결정과 결과에 대한 책임은 투자자 본인에게 있습니다. · 경매 분석 키트 v1</div>
+</body>
+</html>
